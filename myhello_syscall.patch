@@ -1,0 +1,52 @@
+diff --git a/Makefile b/Makefile
+index ebe69a7..ea563ad 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,8 +1,8 @@
+ VERSION = 4
+ PATCHLEVEL = 12
+ SUBLEVEL = 7
+-EXTRAVERSION =
+-NAME = Fearless Coyote
++EXTRAVERSION = .syscall
++NAME = Deepika 
+ 
+ # *DOCUMENTATION*
+ # To see a list of typical targets execute "make help"
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index 5aef183..149b21d 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -339,7 +339,7 @@
+ 330	common	pkey_alloc		sys_pkey_alloc
+ 331	common	pkey_free		sys_pkey_free
+ 332	common	statx			sys_statx
+-
++333     64      myhello                 sys_myhello
+ #
+ # x32-specific system call numbers start at 512 to avoid cache impact
+ # for native 64-bit operation.
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 980c3c9..b9f8005 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -907,3 +907,6 @@ asmlinkage long sys_statx(int dfd, const char __user *path, unsigned flags,
+ 			  unsigned mask, struct statx __user *buffer);
+ 
+ #endif
++
++
++asmlinkage int sys_myhello(void);
+diff --git a/kernel/Makefile b/kernel/Makefile
+index 72aa080..9bda692 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -5,7 +5,7 @@
+ obj-y     = fork.o exec_domain.o panic.o \
+ 	    cpu.o exit.o softirq.o resource.o \
+ 	    sysctl.o sysctl_binary.o capability.o ptrace.o user.o \
+-	    signal.o sys.o kmod.o workqueue.o pid.o task_work.o \
++	    signal.o sys.o kmod.o myhello.o workqueue.o pid.o task_work.o \
+ 	    extable.o params.o \
+ 	    kthread.o sys_ni.o nsproxy.o \
+ 	    notifier.o ksysfs.o cred.o reboot.o \

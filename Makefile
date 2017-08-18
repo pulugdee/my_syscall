@@ -1,8 +1,8 @@
 VERSION = 4
 PATCHLEVEL = 12
 SUBLEVEL = 7
-EXTRAVERSION =
-NAME = Fearless Coyote
+EXTRAVERSION = .syscall
+NAME = Deepika 
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
